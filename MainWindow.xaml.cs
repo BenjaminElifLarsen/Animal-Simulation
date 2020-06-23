@@ -118,7 +118,7 @@ namespace AnimalSimulation
     }
 
     //--------------------------------------------------------------------------------------------------------------------
-    public abstract class Herbavore
+    public abstract class Herbivore
     {
         public abstract void RunFromPredator(); //you have to find predatores in range, thus it need to know all other object's location to see and name to see if they are close enough and in range. Start searching for name and then for location.  
 
@@ -966,7 +966,7 @@ namespace AnimalSimulation
     }
 
     //--------------------------------------------------------------------------------------------------------------------
-    public class AnimalPrey : Herbavore, IAnimalBasicBehavior
+    public class AnimalPrey : Herbivore, IAnimalBasicBehavior
     {
         private int distance;
         private byte movementSpeed;
