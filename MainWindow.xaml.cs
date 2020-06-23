@@ -1550,17 +1550,17 @@ namespace AnimalSimulation
 
     public partial class MainWindow : Window
     {
-
+        private bool simulationRunning = false;
         public MainWindow()
         {
             InitializeComponent();
-            this.Loaded += OnWindowLoaded;
+            //this.Loaded += OnWindowLoaded;
 
         }
 
-        private void OnWindowLoaded(object sender, RoutedEventArgs e) //maybe instead of this, rename the function and call it when a button is pressed.
+        private void RunSimulation/*OnWindowLoaded*/(/*object sender, RoutedEventArgs e*/) //maybe instead of this, rename the function and call it when a button is pressed.
         {
-            
+            simulationRunning = true;
             int width = (int)imageBox.Width;
             int height = (int)imageBox.Height;
             int threadSleep = 100; //in ms
@@ -1574,8 +1574,8 @@ namespace AnimalSimulation
             int deerAmount = 21;
             int elephantAmount = 10;
 
-            int elephantGrassAmount = 16;
-            int lunarpitcherAmount = 24;
+            int elephantGrassAmount = 8;
+            int lunarpitcherAmount = 16;
 
             IList<AnimalPred> animalPredList = new List<AnimalPred>();
             IList<AnimalPrey> animalPreyList = new List<AnimalPrey>();
@@ -1693,7 +1693,7 @@ namespace AnimalSimulation
                     }));
                     Thread.Sleep(threadSleep);
                 } //ends of the while loop for simulation run
-
+                simulationRunning = false;
             });
         } //end of onWindowLoaded
 
@@ -1818,7 +1818,8 @@ namespace AnimalSimulation
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-
+            if(!simulationRunning)
+                RunSimulation();
         }
     }
 }
